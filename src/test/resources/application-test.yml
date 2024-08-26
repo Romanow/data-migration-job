@@ -1,0 +1,12 @@
+batch-processing:
+  tables:
+    - source:
+        schema: public
+        table: users
+      target:
+        schema: public
+        table: users
+
+logging:
+  level:
+    org.springframework.batch.item.database: debug

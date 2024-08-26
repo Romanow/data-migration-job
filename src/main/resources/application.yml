@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: data-migration-job
+  config:
+    import: optional:git.properties
+  profiles:
+    active: local
+  batch:
+    job:
+      enabled: false
+
+batch-processing:
+  tables: []
