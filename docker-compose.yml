@@ -19,7 +19,8 @@ services:
 
   data-migration-job:
     build: .
-    container_name: romanowalex/data-migration-job:v1.0
+    image: romanowalex/data-migration-job:v1.0
+    container_name: data-migration-job
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SOURCE_DATABASE_CONNECTION_URL: jdbc:postgresql://postgres:5432/source
