@@ -1,7 +1,9 @@
 package ru.romanow.migration
 
 import org.slf4j.LoggerFactory
-import org.springframework.batch.core.*
+import org.springframework.batch.core.BatchStatus
+import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobParametersBuilder
 import org.springframework.batch.core.launch.JobLauncher
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -26,6 +28,7 @@ class DataMigrationApplication {
                 val target = table.target
                 val params = JobParametersBuilder()
                     .addString("key", DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(LocalDateTime.now()))
+                    .addString("keyColumnName", table.keyColumnName)
                     .addString("sourceTable", source.schema + "." + source.table)
                     .addString("targetTable", target.schema + "." + target.table)
                     .toJobParameters()

@@ -11,7 +11,7 @@ class DynamicJdbcBatchItemWriter(
 ) : JdbcBatchItemWriter<Map<String, Any>>() {
 
     init {
-        sql = "INSERT INTO $tableName(id) VALUES :id"
+        sql = "INSERT INTO $tableName (id) VALUES :id"
         namedParameterJdbcTemplate = NamedParameterJdbcTemplate(dataSource)
     }
 

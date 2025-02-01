@@ -7,12 +7,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import org.springframework.jdbc.support.JdbcTransactionManager
 import javax.sql.DataSource
 
 @Configuration
 class DatabaseConfiguration {
 
+    @Primary
     @BatchDataSource
     @Bean(name = ["batchDataSource"])
     fun batchDataSource(): DataSource = DataSourceBuilder.create()

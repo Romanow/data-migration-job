@@ -2,12 +2,24 @@ spring:
   application:
     name: data-migration-job
   config:
-    import: optional:git.properties
+    import: optional:git.properties,optional:file:/opt/config/external.yml
   profiles:
     active: local
   batch:
     job:
       enabled: false
+  datasource:
+    source:
+      jdbc-url: jdbc:postgresql://${SOURCE_DATABASE_HOST:postgres}:${SOURCE_DATABASE_PORT:5432}/${SOURCE_DATABASE_NAME:source}
+      username: ${SOURCE_DATABASE_USER:program}
+      password: ${SOURCE_DATABASE_PASSWORD:test}
+      driver-class-name: org.postgresql.Driver
+    target:
+      jdbc-url: jdbc:postgresql://${TARGET_DATABASE_HOST:postgres}:${TARGET_DATABASE_PORT:5432}/${TARGET_DATABASE_NAME:target}
+      username: ${TARGET_DATABASE_USER:program}
+      password: ${TARGET_DATABASE_PASSWORD:test}
+      driver-class-name: org.postgresql.Driver
 
 batch-processing:
+  chunk-size: ${CHUNK_SIZE:5000}
   tables: []

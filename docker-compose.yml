@@ -12,10 +12,27 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
 
+  migration-job:
+    build: .
+    container_name: migration-job
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SOURCE_DATABASE_CONNECTION_URL: jdbc:postgresql://postgres:5432/source
+      SOURCE_DATABASE_USER: program
+      SOURCE_DATABASE_PASSWORD: test
+      TARGET_DATABASE_CONNECTION_URL: jdbc:postgresql://postgres:5432/target
+      TARGET_DATABASE_USER: program
+      TARGET_DATABASE_PASSWORD: test
+    volumes:
+      - ./external.yml:/opt/config/external.yml
+    depends_on:
+      postgres:
+        condition: service_started
+
 volumes:
-  db-data:
+  postgres:

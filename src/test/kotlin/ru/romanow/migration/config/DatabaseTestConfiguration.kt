@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.DependsOn
-import org.springframework.context.annotation.Primary
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 import org.springframework.jdbc.datasource.init.DataSourceInitializer
@@ -32,7 +31,6 @@ class DatabaseTestConfiguration {
         return postgres
     }
 
-    @Primary
     @DependsOn("postgres")
     @Bean(destroyMethod = "close")
     fun sourceDataSource(): HikariDataSource {

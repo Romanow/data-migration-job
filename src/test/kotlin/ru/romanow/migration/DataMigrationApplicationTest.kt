@@ -30,6 +30,6 @@ internal class DataMigrationApplicationTest {
         val target = properties.tables.first().target
         val targetTableName = "${target.schema}.${target.table}"
         val count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM $targetTableName", Long::class.java)!!
-        assertThat(count).isEqualTo(10000)
+        assertThat(count).isEqualTo(20000)
     }
 }

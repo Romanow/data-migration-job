@@ -21,7 +21,6 @@ import org.springframework.transaction.PlatformTransactionManager
 import ru.romanow.migration.service.DynamicJdbcBatchItemWriter
 import javax.sql.DataSource
 
-
 @Configuration
 class BatchProcessConfiguration(
     @Qualifier("sourceDataSource") private val sourceDataSource: DataSource,
@@ -42,7 +41,7 @@ class BatchProcessConfiguration(
     fun migrate(jobRepository: JobRepository, transactionManager: PlatformTransactionManager): Step {
         return StepBuilder(MIGRATION_NAME, jobRepository)
             .chunk<Map<String, Any>, Map<String, Any>>(CHUNK_SIZE, transactionManager)
-            .reader(sourceReader(null))
+            .reader(sourceReader(null, null))
             .writer(targetWriter(null))
             .build()
     }
@@ -50,12 +49,13 @@ class BatchProcessConfiguration(
     @Bean
     @StepScope
     fun sourceReader(
-        @Value("#{jobParameters['sourceTable']}") sourceTableName: String?
+        @Value("#{jobParameters['sourceTable']}") sourceTableName: String?,
+        @Value("#{jobParameters['keyColumnName']}") keyColumnName: String?
     ): JdbcPagingItemReader<Map<String, Any>> {
         val provider = PostgresPagingQueryProvider()
         provider.setSelectClause("SELECT *")
         provider.setFromClause("FROM $sourceTableName")
-        provider.sortKeys = java.util.Map.of("id", Order.ASCENDING)
+        provider.sortKeys = mapOf(keyColumnName to Order.ASCENDING)
         return JdbcPagingItemReaderBuilder<Map<String, Any>>()
             .dataSource(sourceDataSource)
             .queryProvider(provider)

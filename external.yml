@@ -7,7 +7,3 @@ batch-processing:
       target:
         schema: public
         table: users
-
-logging:
-  level:
-    org.springframework.batch.item.database: debug
