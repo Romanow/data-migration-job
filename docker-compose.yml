@@ -17,9 +17,9 @@ services:
     ports:
       - "5432:5432"
 
-  migration-job:
+  data-migration-job:
     build: .
-    container_name: migration-job
+    container_name: romanowalex/data-migration-job:v1.0
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SOURCE_DATABASE_CONNECTION_URL: jdbc:postgresql://postgres:5432/source
