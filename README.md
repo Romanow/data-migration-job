@@ -2,7 +2,7 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Release](https://img.shields.io/github/v/release/Romanow/data-migration-job?logo=github&sort=semver)](https://github.com/Romanow/data-migration-job/releases/latest)
 [![Docker Pulls](https://img.shields.io/docker/pulls/romanowalex/data-migration-job?logo=docker)](https://hub.docker.com/r/romanowalex/data-migration-job)
-[![License](https://img.shields.io/github/license/Romanow/data-migration-job)](https://github.com/Romanow/data-migration-job/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/Romanow/data-migration-job)](https://github.com/Romanow/data-migration-job/blob/master/LICENSE)
 
 # Batch process for data migration
 
