@@ -6,6 +6,14 @@
 
 # Batch process for data migration
 
+GitHub: [romanow/data-migration-job](https://github.com/Romanow/data-migration-job).
+
+## Локальный запуск
+
+Используем [docker-compose.yml](docker-compose.yml)
+
+## Конфигурация
+
 Скрипт представляет собой приложение командной строки и запускается как k8s Job. Подключается к двум БД (`SOURCE_*` и
 `TARGET_*`) и поочередно перекладывает данные между таблицами, описанными в переменной `batch-processing.tables`. Пример
 описания переменной `batch-processing.tables`:
@@ -39,6 +47,4 @@ spring:
       driver-class-name: org.postgresql.Driver
 ```
 
-Для подключения внешней конфигурации нужно положить файл `/opt/config/external.yml`.
-
-Пример запуска в файле [`docker-compose.yml`](docker-compose.yml).
+Для подключения внешней конфигурации нужно положить файл [`/opt/config/external.yml`](external.yml).

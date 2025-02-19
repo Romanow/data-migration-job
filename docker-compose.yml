@@ -19,7 +19,7 @@ services:
 
   data-migration-job:
     build: .
-    image: romanowalex/data-migration-job:v1.0
+    image: romanowalex/data-migration-job:${VERSION}
     container_name: data-migration-job
     environment:
       SPRING_PROFILES_ACTIVE: docker
