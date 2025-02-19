@@ -38,5 +38,14 @@ jobs:
           tags: romanowalex/data-migration-job:${{ github.ref_name }}
           push: true
 
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          repository: romanowalex/data-migration-job
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
+
       - name: Create release
         uses: softprops/action-gh-release@v2
