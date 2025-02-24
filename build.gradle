@@ -10,7 +10,7 @@ plugins {
 }
 
 ext {
-    postgresContainerVersion = "1.20.4"
+    postgresContainerVersion = "1.20.5"
 }
 
 ktlint {
